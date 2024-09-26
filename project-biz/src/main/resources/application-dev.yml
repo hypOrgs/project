@@ -1,0 +1,81 @@
+
+
+server:
+  port: 32010
+#  servlet:
+#    context-path: /api  #设置项目的访问路径前缀
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://101.43.34.30:31685/pan-spring-boot?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    username: root
+    password: Ab123456
+    druid:
+      max-active: 10
+      initial-size: 5
+      min-idle: 2
+      filters: config,stat,slf4j
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 4000
+          enabled: true
+#        slf4j: # 开启  打印数据源的一些细节，默认关闭
+#          enabled: true
+#        config:
+#          enabled: true
+
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher #knif4j官方要求高版本的这么配置，否则官方会起不来
+
+  redis:
+    host: 101.43.34.30
+    port: 30919
+    connect-timeout: 30000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+    client-type: lettuce
+    password: Ab123456
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #在控制台打印SQL日志
+
+
+# 测试@ConfigurationProperties注解使用
+car:
+  brand: build your dream
+  price: 200000
+project:
+  thread:
+    core-size: 2
+    max-size: 10
+    keep-alive-time: 10
+
+
+# sa-token 配置
+sa-token:
+  # token 名称 (同时也是 cookie 名称)
+  token-name: satoken
+  # token 有效期（单位：秒） 默认30天，-1 代表永久有效
+  timeout: 2592000
+  # token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认-1 代表不限制，永不冻结
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录 （为 true 时允许一起登录, 为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token, 为 false 时每次登录新建一个 token）
+  is-share: true
+  # token 风格（默认可取值：uuid、simple-uuid、random-32、random-64、random-128、tik）
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
