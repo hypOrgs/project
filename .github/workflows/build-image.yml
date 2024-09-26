@@ -26,4 +26,6 @@ jobs:
           ls
           cd project-biz/
           ls
+          cd target/
+          ls
           docker build deploy/ --file deploy/Dockerfile --tag my-image-name:$(date +%s)
