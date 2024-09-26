@@ -23,6 +23,7 @@ jobs:
         run: mvn -B package -Dmaven.test.skip=true --file pom.xml
       - name: Build the Docker image
         run: |
+          docker build deploy/ --file deploy/Dockerfile --tag my-image-name:$(date +%s)
           ls project-biz/
           ls project-biz/target/
-          docker build deploy/ --file deploy/Dockerfile --tag my-image-name:$(date +%s)
+          
