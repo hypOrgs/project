@@ -122,7 +122,7 @@
         </dependency>
         <dependency>
             <groupId>com.ypan</groupId>
-            <artifactId>ypan-project-api</artifactId>
+            <artifactId>project-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
