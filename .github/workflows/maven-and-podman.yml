@@ -29,11 +29,11 @@ jobs:
           sudo apt-get install -y podman
       - name: Build the Podman image
         run: |
-          podman build . --file Dockerfile --tag my-image-name:2.0.0
+          podman build . --file Dockerfile --tag project:2.0.0
           podman images
-          podman tag project:2.0.0 ${{ vars.ALIYUN_REGISTRY}}/ypan25/project:2.0.0
+          podman tag project:2.0.0 ${{ vars.ALIYUN_REGISTRY }}/ypan25/project:2.0.0
 
       - name: Login to Aliyun
         run: |
-          podman login -u ${{ secrets.ALIYUN_USER_NAME }} -p ${{ ALIYUN_USER_PASSWORD }}
-          podman push ${{ vars.ALIYUN_REGISTRY}}/ypan25/project:2.0.0
+          podman login -u ${{ secrets.ALIYUN_USER_NAME }} -p ${{ secrets.ALIYUN_USER_PASSWORD }}
+          podman push ${{ vars.ALIYUN_REGISTRY }}/ypan25/project:2.0.0
