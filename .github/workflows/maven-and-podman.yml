@@ -35,5 +35,5 @@ jobs:
 
       - name: Login to Aliyun
         run: |
-          podman login -u ${{ secrets.ALIYUN_USER_NAME }} -p ${{ secrets.ALIYUN_USER_PASSWORD }}
+          podman login -u ${{ secrets.ALIYUN_USER_NAME }} -p ${{ secrets.ALIYUN_USER_PASSWORD }} ${{ vars.ALIYUN_REGISTRY }}
           podman push ${{ vars.ALIYUN_REGISTRY }}/ypan25/project:2.0.0
