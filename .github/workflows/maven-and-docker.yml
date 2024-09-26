@@ -26,9 +26,11 @@ jobs:
           docker build . --file Dockerfile --tag my-image-name:$(date +%s)
           docker images
 
-      - name: Login to Aliyun
+      - name: test
         run: |
           echo "user value is ${{ secrets.ALIYUN_USER_NAME }}"
+
+      - name: Login to Aliyun
         uses: docker/login-action@v1
         with:
           registry: registry.cn-shanghai.aliyuncs.com
