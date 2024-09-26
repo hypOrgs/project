@@ -25,6 +25,7 @@ jobs:
       - name: Build the Docker image
         run: |
           docker build . --file Dockerfile --tag project:1.0.0
+          docker tag project:1.0.0 ${{ vars.ALIYUN_REGISTRY}}/ypan25/project:1.0.0
           docker images
 
       - name: test
