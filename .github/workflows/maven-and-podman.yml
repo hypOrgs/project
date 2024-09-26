@@ -30,8 +30,8 @@ jobs:
       - name: Build the Podman image
         run: |
           podman build . --file Dockerfile --tag project:2.0.0
-          podman images
           podman tag project:2.0.0 ${{ vars.ALIYUN_REGISTRY }}/ypan25/project:2.0.0
+          podman images
 
       - name: Login to Aliyun
         run: |
