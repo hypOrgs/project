@@ -13,24 +13,33 @@ jobs:
     environment: PRD
 
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
+
+
       - name: Set up JDK 11
         uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
+
+
       - name: Build with Maven
         run: mvn -B package -Dmaven.test.skip=true --file pom.xml
+
+
       - name: Build the Docker image
         run: |
           docker build . --file Dockerfile --tag project:1.0.0
           docker tag project:1.0.0 ${{ vars.ALIYUN_REGISTRY}}/ypan25/project:1.0.0
           docker images
+          
 
       - name: test
         run: |
           echo "user value is ${{ secrets.ALIYUN_USER_NAME }}"
+          
 
       - name: Login to Aliyun
         uses: docker/login-action@v3
@@ -38,6 +47,7 @@ jobs:
           registry: ${{ vars.ALIYUN_REGISTRY }}
           username: ${{ secrets.ALIYUN_USER_NAME }}
           password: ${{ secrets.ALIYUN_USER_PASSWORD }}
+
 
       - name: Push Docker Image
         run: |
