@@ -99,7 +99,7 @@ fi
 TotalMemByte=`cat /sys/fs/cgroup/memory/memory.limit_in_bytes`
 UsageMemByte=`cat /sys/fs/cgroup/memory/memory.usage_in_bytes`
 MemByte=$[TotalMemByte-UsageMemByte]
-MemMB=500MB
+MemMB=500
 
 echo "------------------------------------------------------------"
 echo "Memory allocated to container: " ${MemMB}MB
